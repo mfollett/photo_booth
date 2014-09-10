@@ -8,6 +8,21 @@
       }, function() {
         alert(arguments);
       });
+  module.service('sharePhoto', function() {
+    return function(pictureURI) {
+      alert(pictureURI);
+      cordova.exec(
+        // success, do nothing
+        function() { },
+        // failure
+        function(arg) {
+          alert('failure');
+          alert(arg);
+        },
+        'Share',
+        'share',
+        [pictureURI]
+      );
     };
   });
 
