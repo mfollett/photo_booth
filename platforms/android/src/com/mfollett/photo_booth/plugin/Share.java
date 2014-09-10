@@ -12,7 +12,6 @@ import org.json.JSONException;
 
 import android.content.Intent;
 import android.net.Uri;
-// Needed this but docs didn't mention it
 
 /**
  * This class echoes a string called from JavaScript.
@@ -36,15 +35,12 @@ public class Share extends CordovaPlugin {
     	intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(imageURL));
     	intent.setType("image/jpeg");
     	intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        // According to Cordova this is the safe way to fire an activity inside a cordova app, but their
+        // docs on it are kind of awful.
+        // I have no idea what the 0 is for.
     	this.cordova.startActivityForResult((CordovaPlugin)this, Intent.createChooser(intent, "send"), 0);
 
     	callbackContext.success("shared");
-    }
-    private void echo(String message, CallbackContext callbackContext) {
-        if (message != null && message.length() > 0) { 
-            callbackContext.success(message);
-        } else {
-            callbackContext.error("Expected one non-empty string argument.");
-        }
     }
 }
