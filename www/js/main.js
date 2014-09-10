@@ -1,13 +1,20 @@
 (function() {
   var module = angular.module('photoBooth', ['ngCordova', 'ngAnimate']);
 
-  module.controller('photoBoothController', function($scope, $cordovaCamera) {
+  module.controller('photoBoothController', function($scope, $cordovaCamera, sharePhoto) {
+    $scope.sharePhoto = function(uri) {
+      sharePhoto(uri);
+    };
+
     $scope.getPhoto = function() {
       $cordovaCamera.getPicture().then(function(imageData) {
-        $scope.imageData = imageData;
-      }, function() {
-        alert(arguments);
-      });
+          $scope.imageData = imageData;
+        }, function() {
+          alert(arguments);
+        });
+    };
+  });
+
   module.service('sharePhoto', function() {
     return function(pictureURI) {
       alert(pictureURI);
