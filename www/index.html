@@ -32,12 +32,12 @@
             <h1>Photo Booth</h1>
             <div ng-if="imageData" class="show-photos">
                 <div>
-                    <img class="rot1" src="{{imageData}}"/>
-                    <img class="rot2" src="{{imageData}}"/>
+                    <img class="rot1" ng-click="sharePhoto(imageData)" src="{{imageData}}"/>
+                    <img class="rot2" ng-click="sharePhoto(imageData)" src="{{imageData}}"/>
                 </div>
                 <div>
-                    <img class="rot3" src="{{imageData}}"/>
-                    <img class="rot4" src="{{imageData}}"/>
+                    <img class="rot3" ng-click="sharePhoto(imageData)" src="{{imageData}}"/>
+                    <img class="rot4" ng-click="sharePhoto(imageData)" src="{{imageData}}"/>
                 </div>
             </div>
             <button ng-click="getPhoto()">Record Picture</button>
